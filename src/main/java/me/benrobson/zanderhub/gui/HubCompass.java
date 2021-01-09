@@ -44,23 +44,30 @@ public class HubCompass implements Listener {
         ItemStack survival = new ItemStack(Material.IRON_PICKAXE);
         ItemMeta survivalMeta = survival.getItemMeta();
         survivalMeta.setDisplayName(ChatColor.WHITE + "Survival");
-        survivalMeta.setLore(Arrays.asList(ChatColor.WHITE + "Click me to join our Survival server."));
+        survivalMeta.setLore(Arrays.asList(ChatColor.WHITE + "Click me to join the Survival server."));
         survival.setItemMeta(survivalMeta);
-        compnav.setItem(4, survival);
+        compnav.setItem(1, survival);
 
         ItemStack mixed = new ItemStack(Material.IRON_SWORD);
         ItemMeta mixedMeta = mixed.getItemMeta();
         mixedMeta.setDisplayName(ChatColor.WHITE + "Mixed");
-        mixedMeta.setLore(Arrays.asList(ChatColor.WHITE + "Play and Destroy your friends in Minigames."));
+        mixedMeta.setLore(Arrays.asList(ChatColor.WHITE + "Play work together with Campers in Minigames."));
         mixed.setItemMeta(mixedMeta);
-        compnav.setItem(7, mixed);
+        compnav.setItem(5, mixed);
 
-        ItemStack revelation = new ItemStack(Material.CRAFTING_TABLE);
-        ItemMeta revelationMeta = revelation.getItemMeta();
-        revelationMeta.setDisplayName(ChatColor.WHITE + "Revelation");
-        revelationMeta.setLore(Arrays.asList(ChatColor.WHITE + "Click me for more information."));
-        revelation.setItemMeta(revelationMeta);
-        compnav.setItem(1, revelation);
+        ItemStack xprace = new ItemStack(Material.EXPERIENCE_BOTTLE);
+        ItemMeta xpraceMeta = xprace.getItemMeta();
+        xpraceMeta.setDisplayName(ChatColor.WHITE + "XP Race");
+        xpraceMeta.setLore(Arrays.asList(ChatColor.WHITE + "Click me to gather XP!"));
+        xprace.setItemMeta(xpraceMeta);
+        compnav.setItem(7, xprace);
+
+        ItemStack creative = new ItemStack(Material.BEACON);
+        ItemMeta creativeMeta = creative.getItemMeta();
+        creativeMeta.setDisplayName(ChatColor.WHITE + "Creative");
+        creativeMeta.setLore(Arrays.asList(ChatColor.WHITE + "Click me to enter Creative!"));
+        creative.setItemMeta(creativeMeta);
+        compnav.setItem(3, creative);
 
         player.openInventory(compnav);
     }
@@ -91,7 +98,7 @@ public class HubCompass implements Listener {
                 }
                 break;
 
-            // Events
+            // Mixed
             case IRON_SWORD:
                 player.closeInventory();
                 player.sendMessage(ChatColor.YELLOW + "Sending you to Mixed..");
@@ -102,12 +109,15 @@ public class HubCompass implements Listener {
                 }
                 break;
 
-            // Revelation
-            case CRAFTING_TABLE:
+            // XP Race
+            case EXPERIENCE_BOTTLE:
                 player.closeInventory();
-                player.sendMessage("Revelation is a Minecraft snapshot-based Survival Server. The Mojang Team has been dropping Snapshots and this Server allows the community to have fun and explore The Caves and Cliffs Update. We update the Server hours after it's release.");
-                player.sendMessage("");
-                player.sendMessage("You can jump on by booting up the latest snapshot and connecting to " + ChatColor.YELLOW.toString() + ChatColor.BOLD + "revelation.craftingforchrist.net");
+                player.sendMessage(ChatColor.YELLOW + "Sending you to XP Race..");
+                if (player.hasPermission("bungeecord.server.xprace")) {
+                    PluginMessageChannel.connect(player, "xprace");
+                } else  {
+                    player.sendMessage(ChatColor.RED + "You do not have access to this server.");
+                }
                 break;
 
             default:

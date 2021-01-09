@@ -41,26 +41,26 @@ public class HubPlayerJoin implements Listener {
 
         event.setJoinMessage(null); // disable default join message
 
-        if (!player.hasPlayedBefore()) {
-            // New user Joins for first time celebratory firework
-            Firework firework = event.getPlayer().getWorld().spawn(event.getPlayer().getLocation(), Firework.class);
-            FireworkMeta fireworkmeta = firework.getFireworkMeta();
-            fireworkmeta.addEffect(FireworkEffect.builder()
-                    .flicker(false)
-                    .trail(true)
-                    .with(FireworkEffect.Type.CREEPER)
-                    .withColor(Color.GREEN)
-                    .withFade(Color.BLUE)
-                    .build());
-            fireworkmeta.setPower(3);
-            firework.setFireworkMeta(fireworkmeta);
-
-            // Send new user a MOTD seperate to the main MOTD
-            List<String> newplayermotd = plugin.configurationManager.getmotd().getStringList("newplayermotd");
-            for (String s : newplayermotd) {
-                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', s));
-            }
-            event.getPlayer().sendMessage(" "); // Seperate between messages
+//        if (!player.hasPlayedBefore()) {
+//            // New user Joins for first time celebratory firework
+//            Firework firework = event.getPlayer().getWorld().spawn(event.getPlayer().getLocation(), Firework.class);
+//            FireworkMeta fireworkmeta = firework.getFireworkMeta();
+//            fireworkmeta.addEffect(FireworkEffect.builder()
+//                    .flicker(false)
+//                    .trail(true)
+//                    .with(FireworkEffect.Type.CREEPER)
+//                    .withColor(Color.GREEN)
+//                    .withFade(Color.BLUE)
+//                    .build());
+//            fireworkmeta.setPower(3);
+//            firework.setFireworkMeta(fireworkmeta);
+//
+//            // Send new user a MOTD seperate to the main MOTD
+//            List<String> newplayermotd = plugin.configurationManager.getmotd().getStringList("newplayermotd");
+//            for (String s : newplayermotd) {
+//                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', s));
+//            }
+//            event.getPlayer().sendMessage(" "); // Seperate between messages
 
 //        NOTE:: This has been removed due to message giving false unique player count.
 
@@ -71,7 +71,7 @@ public class HubPlayerJoin implements Listener {
             // Broadcast new Unique player message to hub.
 //            Bukkit.broadcastMessage(ChatColor.YELLOW + event.getPlayer().getDisplayName() + ChatColor.BLUE + " joined for the first time!" + ChatColor.GRAY + " (" + ChatColor.BLUE + unique + ChatColor.GRAY + ")");
 //            event.getPlayer().sendMessage(" "); // Seperate between messages
-        }
+//        }
 
 //        NOTE:: This has been removed due to the MOTD having lack of purpose and content.
 
